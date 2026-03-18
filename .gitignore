@@ -1,0 +1,25 @@
+# Environment
+.env
+
+# Bundler
+/.bundle
+/vendor/bundle
+
+# Logs
+/log/*.log
+
+# Temp files
+/tmp/
+
+# Pidfiles
+/tmp/pids/*.pid
+
+# Coverage
+/coverage/
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store

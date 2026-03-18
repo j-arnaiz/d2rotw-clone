@@ -1,0 +1,27 @@
+<h1>D2 DClone Monitor</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Progress</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @statuses.each do |s| %>
+      <tr>
+        <td><%= s[:region] %></td>
+        <td class="<%= s[:progress] == 6 ? 'progress-6' : (s[:progress] == 5 ? 'progress-5' : '') %>">
+          <%= s[:progress] == 'unknown' ? '—' : "#{s[:progress]}/6" %>
+          <%= ' ⚠️ WALKING NOW!' if s[:progress] == 6 %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p class="meta">
+  API params: ladder=<%= @api_params[:ladder] %>, hc=<%= @api_params[:hc] %>, ver=<%= @api_params[:ver] %><br>
+  Polled every minute via Sidekiq cron.<br>
+  <a href="/sidekiq">Sidekiq Web UI</a> — pause/resume the cron job there.
+</p>
