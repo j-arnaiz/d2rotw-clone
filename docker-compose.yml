@@ -12,6 +12,9 @@ services:
     env_file: .env
     depends_on:
       - redis
+    volumes:
+      - .:/app
+      - bundle_data:/usr/local/bundle
 
   worker:
     build: .
@@ -19,6 +22,10 @@ services:
     env_file: .env
     depends_on:
       - redis
+    volumes:
+      - .:/app
+      - bundle_data:/usr/local/bundle
 
 volumes:
   redis_data:
+  bundle_data:
