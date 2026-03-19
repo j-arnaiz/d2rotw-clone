@@ -2,7 +2,7 @@ class DcloneCheckJob
   include Sidekiq::Job
 
   def perform
-    url = "https://diablo2.io/dclone_api.php?" \
+    url = 'https://diablo2.io/dclone_api.php?' \
           "ladder=#{ENV.fetch('D2_LADDER', '1')}&" \
           "hc=#{ENV.fetch('D2_HC', '2')}&" \
           "ver=#{ENV.fetch('D2_VER', '2')}"
@@ -22,8 +22,7 @@ class DcloneCheckJob
         TelegramNotifier.notify(region, progress, last_val)
       end
     end
-  rescue => e
+  rescue StandardError => e
     Rails.logger.error "DcloneCheckJob failed: #{e.message}"
-    raise
   end
 end
